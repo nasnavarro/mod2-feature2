@@ -1,5 +1,6 @@
 import products from '../db/products.js';
 
+//Función que a partir de los productos obtiene el máximo id de los productos, para devolver el siguiente.
 const getNextId = () => {
   const maxId = products.reduce((max, p) => Math.max(max, Number(p.id)), 0);
   return maxId + 1;
