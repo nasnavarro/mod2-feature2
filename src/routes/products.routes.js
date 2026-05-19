@@ -1,25 +1,19 @@
 import { Router } from "express";
-import products from "../db/products.js";
-import { ok, fail } from "../helpers/controllers.response.js";
-import { getProductById } from "../helpers/products.js";
+import * as productsController from "../controllers/products.controller.js";
 
 const router = Router();
 
-//Gestión de la ruta de productos
-router.get('/', (req, res) => {
-    if(!products) return fail(res, "No existe el recurso de productos");
-    ok(res, products);
-});
+// Gestiona las rutas de productos, que tienen estructura previa definida en
+// index.routes: /api/products
 
-//Gestión de la ruta de un producto a partir de su id
-router.get('/:id', (req, res) => {
-    const id_producto = Number(req.params.id);
-
-    if(!id_producto) return fail(res, `El formato pasado de id de producto (${req.params.id}) no es válido`);
-
-    const product = getProductById(req.params.id);
-    if (!product) return fail(res, 'Producto no encontrado', 404);
-    ok(res, product);
-});
+// Getters
+router.get('/', productsController.getProducts);
+router.get('/:id', productsController.getProductById);
+// Post
+router.post('/', productsController.createProduct);
+// Put
+router.put('/:id', productsController.updateProduct);
+// Delete
+router.delete('/:id', productsController.deleteProduct);
 
 export default router;
