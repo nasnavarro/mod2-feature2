@@ -4,6 +4,10 @@
 
 ---
 
+> **Nota sobre IDs:** El enunciado define los IDs de producto como `string` (`id: '1'`). En este proyecto se usa `number` (`id: 1`) por coherencia con las operaciones numéricas (comparaciones, generación de siguiente ID) y porque es el tipo más habitual antes de introducir una base de datos real.
+
+---
+
 ## Objetivo
 
 Evolucionar la API del sprint anterior incorporando una arquitectura profesional basada en capas:

@@ -10,8 +10,8 @@ console.log('--- getAllProducts ---');
 console.log(getAllProducts().length);             // 15
 
 console.log('--- getProductById ---');
-console.log(getProductById('1'));                 // producto id '1'
-console.log(getProductById('999'));               // null
+console.log(getProductById(1));                   // producto id 1
+console.log(getProductById(999));                 // null
 
 console.log('--- createProduct ---');
 const created = createProduct({ name: 'Test', price: 9.99 });
