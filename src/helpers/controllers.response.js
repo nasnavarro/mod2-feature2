@@ -20,4 +20,8 @@ export const notFound = (res, message = 'Recurso no encontrado') => fail(res, me
 
 // Error inesperado del servidor. Usar en bloques catch cuando el error no es de validación ni de negocio
 // sino una excepción no controlada.
-export const serverError = (res, message = 'Error interno del servidor') => fail(res, message, 500);
+// El parámetro err (opcional) se logea internamente pero nunca se expone al cliente por temas de seguridad.
+export const serverError = (res, err = null, message = 'Error interno del servidor') => {
+  if (err) console.error(err);
+  return fail(res, message, 500);
+};

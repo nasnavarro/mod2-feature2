@@ -16,7 +16,7 @@ export const getProducts = (req, res) => {
   try {
     ok(res, productsService.getAllProducts());
   } catch (err) {
-    serverError(res);
+    serverError(res, err);
   }
 };
 
@@ -32,7 +32,7 @@ export const getProductById = (req, res) => {
 
     ok(res, product);
   } catch (err) {
-    serverError(res);
+    serverError(res, err);
   }
 };
 
@@ -46,7 +46,7 @@ export const createProduct = (req, res) => {
     const newProduct = productsService.createProduct(req.body);
     res.status(201).json({ ok: true, data: newProduct });
   } catch (err) {
-    serverError(res);
+    serverError(res, err);
   }
 };
 
@@ -66,7 +66,7 @@ export const updateProduct = (req, res) => {
 
     ok(res, product);
   } catch (err) {
-    serverError(res);
+    serverError(res, err);
   }
 };
 
@@ -82,6 +82,6 @@ export const deleteProduct = (req, res) => {
 
     ok(res, product);
   } catch (err) {
-    serverError(res);
+    serverError(res, err);
   }
 };
