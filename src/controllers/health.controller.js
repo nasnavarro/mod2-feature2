@@ -1,4 +1,4 @@
-import { ok, serverError } from '../helpers/controllers.response.js';
+import { responseOk, responseServerError } from '../helpers/controllers.response.js';
 
 // Convierte segundos en un string legible con formato "Xh Ym Zs"
 const formatUptime = (seconds) => {
@@ -9,14 +9,14 @@ const formatUptime = (seconds) => {
 };
 
 // Función que devuelve un informe de estado del servidor.
-export const getHealth = (req, res) => {
+export const getHealth = async (req, res) => {
   try {
-    ok(res, {
+    responseOk(res, {
       status: 'up',
       uptime: formatUptime(process.uptime()),
       timestamp: new Date().toISOString(),
     });
   } catch (err) {
-    serverError(res, err);
+    responseServerError(res, err);
   }
 };
