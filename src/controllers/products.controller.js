@@ -12,56 +12,76 @@ const validateProductBody = ({ name, price }) => {
 };
 
 // Obtiene todos los productos (GET /api/products)
-export const getProducts = (req, res) =>
-  ok(res, productsService.getAllProducts());
+export const getProducts = (req, res) => {
+  try {
+    ok(res, productsService.getAllProducts());
+  } catch (err) {
+    serverError(res);
+  }
+};
 
 // Obtiene un producto por id (GET /api/products/:id)
 export const getProductById = (req, res) => {
-  const id = Number(req.params.id);
-  if (!Number.isInteger(id) || id <= 0)
-    return badRequest(res, `El id proporcionado (${req.params.id}) no es válido`);
+  try {
+    const id = Number(req.params.id);
+    if (!Number.isInteger(id) || id <= 0)
+      return badRequest(res, `El id proporcionado (${req.params.id}) no es válido`);
 
-  const product = productsService.getProductById(id);
-  // Si no encuentra el producto la respuesta es un error (400), porque no encuentra algo que sí esperaba.
-  if (!product) return notFound(res, `No existe ningún producto con id ${id}`);
+    const product = productsService.getProductById(id);
+    if (!product) return notFound(res, `No existe ningún producto con id ${id}`);
 
-  ok(res, product);
+    ok(res, product);
+  } catch (err) {
+    serverError(res);
+  }
 };
 
 // Crea un producto (POST /api/products)
 // Validaciones: "name" obligatorio, "price obligatorio" y price => 0.
 export const createProduct = (req, res) => {
-  const errors = validateProductBody(req.body);
-  if (errors.length) return badRequest(res, 'Datos inválidos', errors);
+  try {
+    const errors = validateProductBody(req.body);
+    if (errors.length) return badRequest(res, 'Datos inválidos', errors);
 
-  const newProduct = productsService.createProduct(req.body);
-  res.status(201).json({ ok: true, data: newProduct });
+    const newProduct = productsService.createProduct(req.body);
+    res.status(201).json({ ok: true, data: newProduct });
+  } catch (err) {
+    serverError(res);
+  }
 };
 
 // Actualiza un producto (PUT /api/products/:id)
 // Validaciones: "name" obligatorio, "price obligatorio" y price => 0.
 export const updateProduct = (req, res) => {
-  const id = Number(req.params.id);
-  if (!Number.isInteger(id) || id <= 0)
-    return badRequest(res, `El id proporcionado (${req.params.id}) no es válido`);
+  try {
+    const id = Number(req.params.id);
+    if (!Number.isInteger(id) || id <= 0)
+      return badRequest(res, `El id proporcionado (${req.params.id}) no es válido`);
 
-  const errors = validateProductBody(req.body);
-  if (errors.length) return badRequest(res, 'Datos inválidos', errors);
+    const errors = validateProductBody(req.body);
+    if (errors.length) return badRequest(res, 'Datos inválidos', errors);
 
-  const product = productsService.updateProduct(id, req.body);
-  if (!product) return notFound(res, `No existe ningún producto con id ${id}`);
+    const product = productsService.updateProduct(id, req.body);
+    if (!product) return notFound(res, `No existe ningún producto con id ${id}`);
 
-  ok(res, product);
+    ok(res, product);
+  } catch (err) {
+    serverError(res);
+  }
 };
 
 // Elimina un producto (DELETE /api/products/:id)
 export const deleteProduct = (req, res) => {
-  const id = Number(req.params.id);
-  if (!Number.isInteger(id) || id <= 0)
-    return badRequest(res, `El id proporcionado (${req.params.id}) no es válido`);
+  try {
+    const id = Number(req.params.id);
+    if (!Number.isInteger(id) || id <= 0)
+      return badRequest(res, `El id proporcionado (${req.params.id}) no es válido`);
 
-  const product = productsService.deleteProduct(id);
-  if (!product) return notFound(res, `No existe ningún producto con id ${id}`);
+    const product = productsService.deleteProduct(id);
+    if (!product) return notFound(res, `No existe ningún producto con id ${id}`);
 
-  ok(res, product);
+    ok(res, product);
+  } catch (err) {
+    serverError(res);
+  }
 };
