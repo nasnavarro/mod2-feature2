@@ -1,7 +1,7 @@
 {
-  "name": "mod2-feature1",
+  "name": "mod2-feature2",
   "version": "1.0.0",
-  "description": "Module 2 - Sprint 7 - Feature 1 - Building the Node Express structure",
+  "description": "Module 2 - Sprint 8 - Feature 2 - Expanding the Node Express API",
   "main": "index.js",
   "type": "module",
   "scripts": {
