@@ -1,0 +1,20 @@
+{
+  "name": "mod2-feature1",
+  "version": "1.0.0",
+  "description": "Module 2 - Sprint 7 - Feature 1 - Building the Node Express structure",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node --watch src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "express": "5.2.1"
+  }
+}
