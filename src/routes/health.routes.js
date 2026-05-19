@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { ok, fail } from "../helpers/response.js";
+import { ok, fail } from "../helpers/controllers.response.js";
 
 const router = Router();
 

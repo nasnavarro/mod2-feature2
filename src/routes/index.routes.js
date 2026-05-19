@@ -1,7 +1,7 @@
 import { Router } from "express";
 import productsRoutes from "./products.routes.js";
 import healthRoutes from "./health.routes.js";
-import { ok, fail } from "../helpers/response.js";
+import { ok, fail } from "../helpers/controllers.response.js";
 
 const router = Router();
 

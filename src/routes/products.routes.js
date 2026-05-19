@@ -1,6 +1,6 @@
 import { Router } from "express";
 import products from "../db/products.js";
-import { ok, fail } from "../helpers/response.js";
+import { ok, fail } from "../helpers/controllers.response.js";
 import { getProductById } from "../helpers/products.js";
 
 const router = Router();
